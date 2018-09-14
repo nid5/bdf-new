@@ -27,12 +27,9 @@
     POSSIBILITY OF SUCH DAMAGE.
     Tested on Kali-Linux.
 """
-try:
-    from mitmproxy import controller, proxy, platform
-    from mitmproxy.proxy.server import ProxyServer
-except:
-    from libmproxy import controller, proxy, platform
-    from libmproxy.proxy.server import ProxyServer
+
+from mitmproxy import controller, proxy, platform
+from mitmproxy.proxy.server import ProxyServer
 import os
 from bdf import pebin
 from bdf import elfbin
@@ -109,11 +106,11 @@ class EnhancedOutput:
 
     @staticmethod
     def print_error(txt):
-        print "[x] {0}".format(txt)
+        print("[x] {0}".format(txt))
 
     @staticmethod
     def print_info(txt):
-        print "[*] {0}".format(txt)
+        print("[*] {0}".format(txt))
 
     @staticmethod
     def print_warning(txt):
