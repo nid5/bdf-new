@@ -114,7 +114,7 @@ class EnhancedOutput:
 
     @staticmethod
     def print_warning(txt):
-        print "[!] {0}".format(txt)
+        print("[!] {0}".format(txt))
 
     @staticmethod
     def logging_error(txt):
@@ -218,7 +218,7 @@ class ProxyMaster(controller.Master):
         # When called will unpack and edit a Tar File and return a tar file"
 
         if len(aTarFileBytes) > int(self.archive_max_size):
-            print "[!] TarFile over allowed size"
+            print("[!] TarFile over allowed size")
             logging.info("TarFIle maxSize met %s", len(aTarFileBytes))
             return aTarFileBytes
 
@@ -243,7 +243,7 @@ class ProxyMaster(controller.Master):
 
         members = tar_file.getmembers()
         for info in members:
-            print "\t{0} {1}".format(info.name, info.size)
+            print("\t{0} {1}".format(info.name, info.size))
 
         new_tar_storage = tempfile.NamedTemporaryFile()
         new_tar_file = tarfile.open(mode='w' + compression_mode, fileobj=new_tar_storage)
@@ -271,7 +271,7 @@ class ProxyMaster(controller.Master):
                     EnhancedOutput.logging_info('Tar blacklist enforced on {0}'.format(info.name))
                     continue
             except:
-                print "[!] strange formating, bailing on this file"
+                print("[!] strange formating, bailing on this file")
                 continue
 
             # Try to patch
@@ -321,7 +321,7 @@ class ProxyMaster(controller.Master):
     def inject_zip(self, aZipFile):
         # When called will unpack and edit a Zip File and return a zip file
         if len(aZipFile) > int(self.archive_max_size):
-            print "[!] ZipFile over allowed size"
+            print("[!] ZipFile over allowed size")
             logging.info("ZipFIle maxSize met %s", len(aZipFile))
             return aZipFile
 
@@ -346,7 +346,7 @@ class ProxyMaster(controller.Master):
         EnhancedOutput.print_info("ZipFile contents and info:")
 
         for info in zippyfile.infolist():
-            print "\t{0} {1}".format(info.filename, info.file_size)
+            print("\t{0} {1}".format(info.filename, info.file_size))
 
         tmpDir = tempfile.mkdtemp()
         zippyfile.extractall(tmpDir)
@@ -709,11 +709,11 @@ class ProxyMaster(controller.Master):
     '''
 
     def handle_request(self, flow):
-        print "*" * 10, "REQUEST", "*" * 10
+        print("*" * 10, "REQUEST", "*" * 10)
         EnhancedOutput.print_info("HOST: {0}".format(flow.request.host))
         EnhancedOutput.print_info("PATH: {0}".format(flow.request.path))
         flow.reply()
-        print "*" * 10, "END REQUEST", "*" * 10
+        print("*" * 10, "END REQUEST", "*" * 10)
 
     def handle_response(self, flow):
         # Read config here for dynamic updating
@@ -726,7 +726,7 @@ class ProxyMaster(controller.Master):
             if target in flow.request.host:
                 self.parse_target_config(self.user_config['targets'][target])
 
-        print "=" * 10, "RESPONSE", "=" * 10
+        print("=" * 10, "RESPONSE", "=" * 10)
 
         EnhancedOutput.print_info("HOST: {0}".format(flow.request.host))
         EnhancedOutput.print_info("PATH: {0}".format(flow.request.path))
@@ -801,7 +801,7 @@ class ProxyMaster(controller.Master):
 
             flow.reply()
 
-        print "=" * 10, "END RESPONSE", "=" * 10
+        print("=" * 10, "END RESPONSE", "=" * 10)
 
 ################################## START MAIN #######################################
 
